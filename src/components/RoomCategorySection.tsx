@@ -107,7 +107,14 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
             <tr>
               <td className="sticky-cell">Rooms to sell</td>
               {category.inventory_calendar.map((inventory) => (
-                <td key={inventory.date} style={{ textAlign: "right" }}>
+                <td
+                  key={inventory.date}
+                  style={{
+                    backgroundColor: !inventory.status ? "red" : undefined,
+                    color: !inventory.status ? "white" : undefined,
+                    textAlign: "right",
+                  }}
+                >
                   {inventory.available}
                 </td>
               ))}
@@ -115,7 +122,14 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
             <tr>
               <td className="sticky-cell">Net booked</td>
               {category.inventory_calendar.map((inventory) => (
-                <td key={inventory.date} style={{ textAlign: "right" }}>
+                <td
+                  key={inventory.date}
+                  style={{
+                    backgroundColor: !inventory.status ? "red" : undefined,
+                    color: !inventory.status ? "white" : undefined,
+                    textAlign:"right"
+                  }}
+                >
                   {inventory.booked}
                 </td>
               ))}
@@ -134,7 +148,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                   <td className="sticky-cell">Min. length of stay</td>
                   {plan.calendar.map((cal) => (
                     <td key={cal.id} style={{ textAlign: "right" }}>
-                      {cal.min_length_of_stay ?? "N/A"}
+                      {cal.min_length_of_stay ?? ""}
                     </td>
                   ))}
                 </tr>
