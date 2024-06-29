@@ -1,35 +1,82 @@
+import {
+  Box,
+  Card,
+  CardContent,
+  CircularProgress,
+  Container,
+  Typography,
+} from "@mui/material";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { fetchRateCalendar } from "../api/fetchRateCalendar";
+import { IRoomCategory } from "../types/interfaces";
+import DateRangePicker from "./DateRangePicker";
+import RoomCategorySection from "./RoomCategorySection";
+import AppTitle from "./common/header/AppTitle";
 
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import DateRangePicker from "./input/DateRangePicker";
+const RateCalendarLayout: React.FC = () => {
+  const [startDate, setStartDate] = useState(dayjs());
+  const [endDate, setEndDate] = useState(dayjs().add(2, "month"));
+  const [loading, setLoading] = useState(true);
 
-export default function RateCalendarLayout() {
+  const { data, isLoading, error } = useQuery<IRoomCategory[]>(
+    ["rateCalendar", startDate, endDate],
+    () =>
+      fetchRateCalendar(
+        startDate.format("YYYY-MM-DD"),
+        endDate.format("YYYY-MM-DD")
+      ),
+    { keepPreviousData: true }
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading || loading)
+    return (
+      <Box display="flex" justifyContent="center" mt={5}>
+        <CircularProgress />
+      </Box>
+    );
+  if (error) return <Typography color="error">Error loading data</Typography>;
+
   return (
     <>
-      <Container
-        maxWidth="false"
-        // sx={{
-        //   height: "100vh",
-        // //   display: "flex",
-        // //   flexDirection: "column",
-        //   bgcolor: "#e5ffff",
-        // }}
-      >
-        <Card sx={{ maxWidth: "100%", margin: "30px", borderRadius:"14px" }} variant="outlined">
+      <Container maxWidth={false} sx={{ minHeight: "100vh" }}>
+        <Card
+          sx={{ maxWidth: "100%", margin: "30px", borderRadius: "14px" }}
+          variant="outlined"
+        >
           <CardContent>
-            {/* <Typography variant="h5" component="div">
-              Rate Calendar
-            </Typography> */}
-                      <h4 style={{fontWeight:"bold"}}>Rate Calendar</h4>
-            <DateRangePicker />
+            <AppTitle />
+            <DateRangePicker
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+            />
+          </CardContent>
+        </Card>
+        <Card
+          sx={{ maxWidth: "100%", margin: "30px", borderRadius: "14px" }}
+          variant="outlined"
+        >
+          <CardContent>
+            {data &&
+              data.map((category) => (
+                <RoomCategorySection key={category.id} category={category} />
+              ))}
           </CardContent>
         </Card>
       </Container>
     </>
   );
-}
+};
+
+export default RateCalendarLayout;

@@ -1,0 +1,70 @@
+.table-container {
+  overflow-x: auto;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 8px;
+  height: auto;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-weight: bold;
+  font-size: smaller;
+  color: black;
+  min-width: 100px;
+  text-align: left;
+
+}
+
+.sticky-cell {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  border-right: 2px solid #ddd;
+  white-space: nowrap;
+  min-width: 150px;
+  background: white;
+  text-align: left;
+  
+}
+
+.sticky-cell::before {
+  content: "";
+  display: block;
+  top: 0;
+  left: 0;
+  background: inherit;
+  z-index: -1;
+  
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bulk-edit-button-container {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.bulk-edit-button {
+  right: 20px;
+  top: 20px;
+  z-index: 1000;
+  float: right;
+}
+
+.header-row {
+  position: relative;
+  z-index: 1000;
+  background: white;
+}
+
+.scrollable {
+  overflow-x: auto;
+}

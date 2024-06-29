@@ -1,11 +1,13 @@
 
+
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import CssBaseline from "@mui/material/CssBaseline";
-import AppRoutes from "./routes/Route";
+import AppRoutes from "./routes/Routes";
 
 const queryClient = new QueryClient();
 
-const App  = () => {
+const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <CssBaseline />
