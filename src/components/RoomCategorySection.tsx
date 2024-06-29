@@ -110,8 +110,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                 <td
                   key={inventory.date}
                   style={{
-                    backgroundColor: !inventory.status ? "red" : undefined,
-                    color: !inventory.status ? "white" : undefined,
+                    backgroundColor: inventory.status
+                      ? "white"
+                      : "rgb(236, 87, 87)",
+                    color: inventory.status ? "black" : "white",
                     textAlign: "right",
                   }}
                 >
@@ -125,8 +127,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                 <td
                   key={inventory.date}
                   style={{
-                    backgroundColor: !inventory.status ? "red" : undefined,
-                    color: !inventory.status ? "white" : undefined,
+                    backgroundColor: inventory.status
+                      ? "white"
+                      : "rgb(236, 87, 87)",
+                    color: inventory.status ? "black" : "white",
                     textAlign: "right",
                   }}
                 >
@@ -150,8 +154,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                       <td
                         key={inventory.date}
                         style={{
-                          backgroundColor: inventory.status ? "" : "red",
-                          color: inventory.status ? "" : "white",
+                          backgroundColor: inventory.status
+                            ? "white"
+                            : "rgb(236, 87, 87)",
+                          color: inventory.status ? "black" : "white",
                           textAlign: "right",
                         }}
                       >
@@ -176,8 +182,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                       <td
                         key={inventory.date}
                         style={{
-                          backgroundColor: inventory.status ? "" : "red",
-                          color: inventory.status ? "" : "white",
+                          backgroundColor: inventory.status
+                            ? "white"
+                            : "rgb(236, 87, 87)",
+                          color: inventory.status ? "black" : "white",
                           textAlign: "right",
                         }}
                       >
@@ -202,8 +210,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                       <td
                         key={inventory.date}
                         style={{
-                          backgroundColor: inventory.status ? "" : "red",
-                          color: inventory.status ? "" : "white",
+                          backgroundColor: inventory.status
+                            ? "white"
+                            : "rgb(236, 87, 87)",
+                          color: inventory.status ? "black" : "white",
                           textAlign: "right",
                         }}
                       >
