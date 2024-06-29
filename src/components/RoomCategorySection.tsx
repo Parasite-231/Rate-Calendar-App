@@ -127,7 +127,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                   style={{
                     backgroundColor: !inventory.status ? "red" : undefined,
                     color: !inventory.status ? "white" : undefined,
-                    textAlign:"right"
+                    textAlign: "right",
                   }}
                 >
                   {inventory.booked}
@@ -138,27 +138,79 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
               <React.Fragment key={plan.id}>
                 <tr>
                   <td className="sticky-cell">{plan.name}</td>
-                  {plan.calendar.map((cal) => (
-                    <td key={cal.id} style={{ textAlign: "right" }}>
-                      {cal.rate}
-                    </td>
-                  ))}
+
+                  {category.inventory_calendar.map((inventory) => {
+                    const rateInfo = plan.calendar.find(
+                      (c) => c.date === inventory.date
+                    );
+                    const rateDisplay =
+                      rateInfo && rateInfo.rate != null ? rateInfo.rate : " ";
+
+                    return (
+                      <td
+                        key={inventory.date}
+                        style={{
+                          backgroundColor: inventory.status ? "" : "red",
+                          color: inventory.status ? "" : "white",
+                          textAlign: "right",
+                        }}
+                      >
+                        {rateDisplay}
+                      </td>
+                    );
+                  })}
                 </tr>
                 <tr>
                   <td className="sticky-cell">Min. length of stay</td>
-                  {plan.calendar.map((cal) => (
-                    <td key={cal.id} style={{ textAlign: "right" }}>
-                      {cal.min_length_of_stay ?? ""}
-                    </td>
-                  ))}
+
+                  {category.inventory_calendar.map((inventory) => {
+                    const rateInfo = plan.calendar.find(
+                      (c) => c.date === inventory.date
+                    );
+                    const minLengthDisplay =
+                      rateInfo && rateInfo.min_length_of_stay != null
+                        ? rateInfo.min_length_of_stay
+                        : " ";
+
+                    return (
+                      <td
+                        key={inventory.date}
+                        style={{
+                          backgroundColor: inventory.status ? "" : "red",
+                          color: inventory.status ? "" : "white",
+                          textAlign: "right",
+                        }}
+                      >
+                        {minLengthDisplay}
+                      </td>
+                    );
+                  })}
                 </tr>
                 <tr>
                   <td className="sticky-cell">Min. advance reservation</td>
-                  {plan.calendar.map((cal) => (
-                    <td key={cal.id} style={{ textAlign: "right" }}>
-                      {cal.reservation_deadline ?? ""}
-                    </td>
-                  ))}
+
+                  {category.inventory_calendar.map((inventory) => {
+                    const rateInfo = plan.calendar.find(
+                      (c) => c.date === inventory.date
+                    );
+                    const reservationDeadlineDisplay =
+                      rateInfo && rateInfo.reservation_deadline != null
+                        ? rateInfo.reservation_deadline
+                        : " ";
+
+                    return (
+                      <td
+                        key={inventory.date}
+                        style={{
+                          backgroundColor: inventory.status ? "" : "red",
+                          color: inventory.status ? "" : "white",
+                          textAlign: "right",
+                        }}
+                      >
+                        {reservationDeadlineDisplay}
+                      </td>
+                    );
+                  })}
                 </tr>
               </React.Fragment>
             ))}
