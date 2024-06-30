@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { fetchRateCalendar } from "../api/fetchRateCalendar";
 import { IRoomCategory } from "../types/interfaces";
@@ -18,7 +18,7 @@ import AppTitle from "./common/header/AppTitle";
 const RateCalendarLayout: React.FC = () => {
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs().add(2, "month"));
-  const [loading, setLoading] = useState(true);
+
 
   const { data, isLoading, error } = useQuery<IRoomCategory[]>(
     ["rateCalendar", startDate, endDate],
@@ -30,15 +30,9 @@ const RateCalendarLayout: React.FC = () => {
     { keepPreviousData: true }
   );
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
 
-  if (isLoading || loading)
+  if (isLoading)
     return (
       <Box display="flex" justifyContent="center" mt={5}>
         <CircularProgress />

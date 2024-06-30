@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
+import standardRatePlanIcon from "../assets/icons/standardRateIcon.png";
 import "../styles/TableDesign.css";
 import { IRoomCategory } from "../types/interfaces";
 
@@ -30,9 +31,18 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
     return grouped;
   };
 
+  console.log(category)
+
   const groupedDates = groupDatesByMonthYear(
     category.inventory_calendar.map((inv) => inv.date)
   );
+
+  const listForClosedRoomStatus = category.inventory_calendar.filter(
+    (inventory) => !inventory.status
+  );
+
+
+  const totalNumberOfClosedRooms = listForClosedRoomStatus.length;
 
   return (
     <>
@@ -141,7 +151,35 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
             {category.rate_plans.map((plan) => (
               <React.Fragment key={plan.id}>
                 <tr>
-                  <td className="sticky-cell">{plan.name}</td>
+                  <td className="sticky-cell">
+                    {plan.name}
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "7px",
+                        marginLeft: "12px",
+                      }}
+                    >
+                      <img
+                        src={standardRatePlanIcon}
+                        width="20px"
+                        height="20px"
+                        alt="Icon for standard rate plan"
+                        loading="lazy"
+                      />
+
+                      <span
+                        style={{
+                          fontSize: "small",
+                          color: "#5caef2",
+                          padding: "2px",
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        × {totalNumberOfClosedRooms}
+                      </span>
+                    </div>
+                  </td>
 
                   {category.inventory_calendar.map((inventory) => {
                     const rateInfo = plan.calendar.find(
