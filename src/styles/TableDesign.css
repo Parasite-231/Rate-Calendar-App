@@ -63,11 +63,9 @@
   position: relative;
   z-index: 1000;
   background: white;
-}
 
+}
 .scrollable {
   overflow-x: auto;
 }
-.t{
-  background: #5caef2;
-}
+

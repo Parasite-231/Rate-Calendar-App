@@ -31,6 +31,7 @@ const SingleInputDateRangePicker: React.FC<SingleInputDateRangePickerProps> = ({
       <Box sx={{ width: "600px" }}>
         <DateRangePicker
           value={[startDate, endDate]}
+     
           onChange={handleDateRangeChange}
           slots={{ field: SingleInputDateRangeField }}
           slotProps={{
@@ -51,6 +52,7 @@ const SingleInputDateRangePicker: React.FC<SingleInputDateRangePickerProps> = ({
           }}
         />
       </Box>
+    
     </LocalizationProvider>
   );
 };

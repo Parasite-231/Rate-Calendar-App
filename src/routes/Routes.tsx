@@ -6,6 +6,7 @@ import RateCalendarPage from "../pages/RateCalendarPage";
 import PageNotFound from "../pages/PageNotFound";
 
 
+
 const AppRoutes: React.FC = () => {
   return (
     <Router>
