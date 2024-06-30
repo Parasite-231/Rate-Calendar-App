@@ -32,17 +32,13 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
   };
 
   console.log(category)
+   console.log("Occupancy Number:", category.occupancy);
 
   const groupedDates = groupDatesByMonthYear(
     category.inventory_calendar.map((inv) => inv.date)
   );
 
-  const listForClosedRoomStatus = category.inventory_calendar.filter(
-    (inventory) => !inventory.status
-  );
-
-
-  const totalNumberOfClosedRooms = listForClosedRoomStatus.length;
+ 
 
   return (
     <>
@@ -176,7 +172,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                           fontWeight: "bolder",
                         }}
                       >
-                        × {totalNumberOfClosedRooms}
+                        × {category.occupancy}
                       </span>
                     </div>
                   </td>

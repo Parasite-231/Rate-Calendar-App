@@ -28,3 +28,4 @@ export interface IRoomCategory {
   inventory_calendar: IRoomInventoryCalendar[];
   rate_plans: IRatePlan[];
 }
+
