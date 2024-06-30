@@ -1,7 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
 import standardRatePlanIcon from "../assets/icons/standardRateIcon.png";
-import "../styles/TableDesign.css";
 import { IRoomCategory } from "../types/interfaces";
 
 interface RoomCategorySectionProps {
@@ -42,11 +41,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
 
   return (
     <>
-      <div className="table-container" style={{ overflowX: "auto" }}>
-        <table
-          className="custom-table"
-          style={{ width: "100%", borderCollapse: "collapse" }}
-        >
+  
           <thead>
             <tr>
               <th className="sticky-cell" style={{ borderBottom: "none" }}></th>
@@ -259,8 +254,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
               </React.Fragment>
             ))}
           </tbody>
-        </table>
-      </div>
+      
     </>
   );
 };

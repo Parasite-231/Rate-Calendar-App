@@ -14,7 +14,7 @@ import { IRoomCategory } from "../types/interfaces";
 import DateRangePicker from "./DateRangePicker";
 import RoomCategorySection from "./RoomCategorySection";
 import AppTitle from "./common/header/AppTitle";
-
+import "../styles/TableDesign.css";
 const RateCalendarLayout: React.FC = () => {
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs().add(2, "month"));
@@ -27,7 +27,11 @@ const RateCalendarLayout: React.FC = () => {
         startDate.format("YYYY-MM-DD"),
         endDate.format("YYYY-MM-DD")
       ),
-    { keepPreviousData: true }
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      
+    }
   );
 
 
@@ -62,10 +66,17 @@ const RateCalendarLayout: React.FC = () => {
           variant="outlined"
         >
           <CardContent>
+            <div className="table-container" style={{ overflowX: "auto" }}>
+        <table
+          className="custom-table"
+          style={{ width: "100%", borderCollapse: "collapse" }}
+        >
             {data &&
               data.map((category) => (
                 <RoomCategorySection key={category.id} category={category} />
               ))}
+              </table>
+              </div>
           </CardContent>
         </Card>
       </Container>
