@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import ErrorSharpIcon from "@mui/icons-material/ErrorSharp";
 import {
+  Button,
   Card,
   CardContent,
   Container,
-  Typography,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
-  Button,
+  DialogContent,
+  DialogTitle,
+  Typography,
 } from "@mui/material";
-import ErrorSharpIcon from "@mui/icons-material/ErrorSharp";
+import { message } from "antd";
 import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchRateCalendar } from "../api/fetchRateCalendar";
+import "../styles/TableDesign.css";
 import { IRoomCategory } from "../types/interfaces";
 import DateRangePicker from "./DateRangePicker";
 import RoomCategorySection from "./RoomCategorySection";
-import AppTitle from "./common/header/AppTitle";
-import "../styles/TableDesign.css";
-import { message } from "antd";
-import ScreenLoaderLayout from "./common/loader/ScreenLoaderLayout";
 import DataFetchingErrorLayout from "./common/error/DataFetchingErrorLayout";
+import AppTitle from "./common/header/AppTitle";
+import ScreenLoaderLayout from "./common/loader/ScreenLoaderLayout";
 
 const RateCalendarLayout: React.FC = () => {
   const [startDate, setStartDate] = useState(dayjs());
@@ -49,9 +49,8 @@ const RateCalendarLayout: React.FC = () => {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
       enabled: !startDate.isAfter(endDate),
-      
+
       onSuccess: () => {
-   
         message.success(
           `Room Calendar Fetched Successfully for ${startDate.format(
             "YYYY-MM-DD"
@@ -121,6 +120,7 @@ const RateCalendarLayout: React.FC = () => {
         </Card>
         <br />
       </Container>
+      
     </>
   );
 };

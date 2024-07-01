@@ -93,7 +93,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
           {index > 0 && (
             <thead>
               <tr>
-                <th className="sticky-cell" style={{ fontSize: "large"}}>
+                <th className="sticky-cell" style={{ fontSize: "large" }}>
                   <h4>{category.name}</h4>
                 </th>
                 <td
@@ -160,7 +160,10 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                     textAlign: "right",
                   }}
                 >
-                  {inventory.available}
+                  {inventory.available !== undefined &&
+                  inventory.available !== null
+                    ? inventory.available
+                    : "-"}
                 </td>
               ))}
             </tr>
@@ -175,7 +178,9 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                     textAlign: "right",
                   }}
                 >
-                  {inventory.booked}
+                  {inventory.booked !== undefined && inventory.booked !== null
+                    ? inventory.booked
+                    : "-"}
                 </td>
               ))}
             </tr>
@@ -206,7 +211,11 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                           fontWeight: "bolder",
                         }}
                       >
-                        × {category.occupancy}
+                        ×{" "}
+                        {category.occupancy !== undefined &&
+                        category.occupancy !== null
+                          ? category.occupancy
+                          : "-"}
                       </span>
                     </div>
                   </td>
@@ -215,7 +224,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                       (c) => c.date === inventory.date
                     );
                     const rateDisplay =
-                      rateInfo && rateInfo.rate != null ? rateInfo.rate : " ";
+                      rateInfo && rateInfo.rate != null ? rateInfo.rate : "-";
                     return (
                       <td
                         key={inventory.date}
@@ -241,7 +250,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                     const minLengthDisplay =
                       rateInfo && rateInfo.min_length_of_stay != null
                         ? rateInfo.min_length_of_stay
-                        : " ";
+                        : "-";
                     return (
                       <td
                         key={inventory.date}
@@ -267,7 +276,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                     const reservationDeadlineDisplay =
                       rateInfo && rateInfo.reservation_deadline != null
                         ? rateInfo.reservation_deadline
-                        : " ";
+                        : "-";
                     return (
                       <td
                         key={inventory.date}
