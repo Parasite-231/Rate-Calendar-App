@@ -31,7 +31,7 @@ const RateCalendarLayout: React.FC = () => {
   useEffect(() => {
     if (startDate.isAfter(endDate)) {
       setOpenDialog(true);
-    } 
+    }
   }, [startDate, endDate]);
 
   const handleClose = () => {
@@ -69,11 +69,7 @@ const RateCalendarLayout: React.FC = () => {
     }
   );
 
-  if (isLoading)
-    return (
-      
-      <ScreenLoaderLayout loaderMessage="Loading data..." />
-    );
+  if (isLoading) return <ScreenLoaderLayout loaderMessage="Loading data..." />;
 
   if (error) return <DataFetchingErrorLayout />;
 
@@ -116,13 +112,7 @@ const RateCalendarLayout: React.FC = () => {
                 className="custom-table"
                 style={{ width: "100%", borderCollapse: "collapse" }}
               >
-                {data &&
-                  data.map((category) => (
-                    <RoomCategorySection
-                      key={category.id}
-                      category={category}
-                    />
-                  ))}
+                {data && <RoomCategorySection categories={data} />}
               </table>
             </div>
           </CardContent>

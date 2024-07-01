@@ -7,7 +7,7 @@
   padding: 8px;
   height: auto;
   text-align: center;
-  border: 1px solid #ddd;
+  border: none;
   font-weight: bold;
   font-size: small;
   color: black;
@@ -15,26 +15,40 @@
   text-align: left;
 
 }
+.custom-table th {
+  border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+ 
+}
+
+.custom-table td {
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+ 
+}
 
 .sticky-cell {
-  position: sticky;
+  position:sticky;
   left: 0;
   z-index: 1;
-  border-right: 2px solid #ddd;
+  border: none;
   white-space: nowrap;
-  min-width: 150px;
+  min-width: auto;
   background: white;
   text-align: left;
   
 }
 
 .sticky-cell::before {
-  content: "";
+  content: " ";
   display: block;
+  /* border: 2px 2px 2px 2px solid #ddd; */
   top: 0;
   left: 0;
-  background: inherit;
+  background: white;
   z-index: -1;
+  backface-visibility: hidden;
+ 
   
 }
 
