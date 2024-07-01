@@ -49,7 +49,9 @@ const RateCalendarLayout: React.FC = () => {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
       enabled: !startDate.isAfter(endDate),
+      
       onSuccess: () => {
+   
         message.success(
           `Room Calendar Fetched Successfully for ${startDate.format(
             "YYYY-MM-DD"

@@ -11,5 +11,7 @@ export const fetchRateCalendar = async (
       params: { start_date: startDate, end_date: endDate },
     }
   );
+  
+
   return data.data;
 };
