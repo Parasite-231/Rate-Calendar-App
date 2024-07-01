@@ -51,7 +51,7 @@ const RateCalendarLayout: React.FC = () => {
       enabled: !startDate.isAfter(endDate),
       onSuccess: () => {
         message.success(
-          `Data shown from ${startDate.format(
+          `Room Calendar Fetched Successfully for ${startDate.format(
             "YYYY-MM-DD"
           )} to ${endDate.format("YYYY-MM-DD")}`
         );
@@ -81,8 +81,8 @@ const RateCalendarLayout: React.FC = () => {
     <>
       <Dialog open={openDialog} onClose={handleClose}>
         <DialogTitle>
-          {"Invalid Date Range"}
-          <ErrorSharpIcon color="warning" />
+          <span>{"Invalid Date Range"}</span>
+          <ErrorSharpIcon color="warning" style={{ marginLeft: "7px" }} />
         </DialogTitle>
         <DialogContent>
           <Typography>Start date cannot be greater than end date.</Typography>
@@ -127,6 +127,7 @@ const RateCalendarLayout: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        <br />
       </Container>
     </>
   );

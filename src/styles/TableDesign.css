@@ -9,7 +9,7 @@
   text-align: center;
   border: 1px solid #ddd;
   font-weight: bold;
-  font-size: smaller;
+  font-size: small;
   color: black;
   min-width: 100px;
   text-align: left;
@@ -41,6 +41,7 @@
 .custom-table {
   width: 100%;
   border-collapse: collapse;
+
 }
 
 .bulk-edit-button-container {
@@ -57,6 +58,7 @@
   top: 20px;
   z-index: 1000;
   float: right;
+
 }
 
 .header-row {

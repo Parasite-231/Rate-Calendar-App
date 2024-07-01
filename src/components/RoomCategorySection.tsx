@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
-import standardRatePlanIcon from "../assets/icons/standardRateIcon.svg";
+import standardRatePlanIcon from "/icons/standardRateIcon.svg";
 import { IRoomCategory } from "../types/interfaces";
 interface RoomCategorySectionProps {
   category: IRoomCategory;
@@ -68,7 +68,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
           ))}
         </tr>
       </thead>
-    
+
       <tbody>
         <tr>
           <th className="sticky-cell" style={{ fontSize: "large" }}>
@@ -82,7 +82,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
               <Button
                 className="bulk-edit-button"
                 variant="contained"
-                style={{ position: "sticky", background: "#FF5733 " }}
+                style={{ position: "sticky", background: "#F68656 " }}
               >
                 + BULK EDIT
               </Button>
@@ -96,7 +96,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
               key={inventory.date}
               style={{
                 textAlign: "right",
-                backgroundColor: inventory.status ? "green" : "red",
+                backgroundColor: inventory.status ? "#2F7D32" : "#D3302F",
                 color: "white",
               }}
             >
@@ -110,9 +110,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
             <td
               key={inventory.date}
               style={{
-                backgroundColor: inventory.status
-                  ? "white"
-                  : "rgb(236, 87, 87)",
+                backgroundColor: inventory.status ? "white" : "#EF5350",
                 color: inventory.status ? "black" : "white",
                 textAlign: "right",
               }}
@@ -127,9 +125,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
             <td
               key={inventory.date}
               style={{
-                backgroundColor: inventory.status
-                  ? "white"
-                  : "rgb(236, 87, 87)",
+                backgroundColor: inventory.status ? "white" : "#EF5350",
                 color: inventory.status ? "black" : "white",
                 textAlign: "right",
               }}
@@ -182,9 +178,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                   <td
                     key={inventory.date}
                     style={{
-                      backgroundColor: inventory.status
-                        ? "white"
-                        : "rgb(236, 87, 87)",
+                      backgroundColor: inventory.status ? "white" : "#EF5350",
                       color: inventory.status ? "black" : "white",
                       textAlign: "right",
                     }}
@@ -210,9 +204,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                   <td
                     key={inventory.date}
                     style={{
-                      backgroundColor: inventory.status
-                        ? "white"
-                        : "rgb(236, 87, 87)",
+                      backgroundColor: inventory.status ? "white" : "#EF5350",
                       color: inventory.status ? "black" : "white",
                       textAlign: "right",
                     }}
@@ -238,9 +230,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                   <td
                     key={inventory.date}
                     style={{
-                      backgroundColor: inventory.status
-                        ? "white"
-                        : "rgb(236, 87, 87)",
+                      backgroundColor: inventory.status ? "white" : "#EF5350",
                       color: inventory.status ? "black" : "white",
                       textAlign: "right",
                     }}

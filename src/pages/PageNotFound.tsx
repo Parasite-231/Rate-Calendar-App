@@ -1,8 +1,10 @@
 import PageNotFoundLayout from "../components/common/error/PageNotFoundLayout";
 
+const PageNotFound: React.FC = () => { 
 
-export default function PageNotFound() {
   return (
     <PageNotFoundLayout />
   )
 }
+
+export default PageNotFound
