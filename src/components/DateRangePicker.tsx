@@ -1,10 +1,10 @@
-import React from "react";
 import { Box } from "@mui/material";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import  { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
+import React from "react";
 
 interface SingleInputDateRangePickerProps {
   startDate: Dayjs;
@@ -31,7 +31,6 @@ const SingleInputDateRangePicker: React.FC<SingleInputDateRangePickerProps> = ({
       <Box sx={{ width: "600px" }}>
         <DateRangePicker
           value={[startDate, endDate]}
-     
           onChange={handleDateRangeChange}
           slots={{ field: SingleInputDateRangeField }}
           slotProps={{
@@ -52,7 +51,6 @@ const SingleInputDateRangePicker: React.FC<SingleInputDateRangePickerProps> = ({
           }}
         />
       </Box>
-    
     </LocalizationProvider>
   );
 };

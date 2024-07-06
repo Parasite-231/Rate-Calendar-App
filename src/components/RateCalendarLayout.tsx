@@ -1,22 +1,20 @@
-import ErrorSharpIcon from "@mui/icons-material/ErrorSharp";
+import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import {
-  Button,
+  Container,
   Card,
   CardContent,
-  Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Button,
   Typography,
 } from "@mui/material";
 import { message } from "antd";
-import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { fetchRateCalendar } from "../api/fetchRateCalendar";
 import "../styles/TableDesign.css";
-import { IRoomCategory } from "../types/interfaces";
+import ErrorSharpIcon from "@mui/icons-material/ErrorSharp";
+import { useFetchRateCalendar } from "../api/fetchRateCalendar";
 import DateRangePicker from "./DateRangePicker";
 import RoomCategorySection from "./RoomCategorySection";
 import DataFetchingErrorLayout from "./common/error/DataFetchingErrorLayout";
@@ -38,37 +36,32 @@ const RateCalendarLayout: React.FC = () => {
     setOpenDialog(false);
   };
 
-  const { data, isLoading, error } = useQuery<IRoomCategory[]>(
-    ["rateCalendar", startDate, endDate],
-    () =>
-      fetchRateCalendar(
-        startDate.format("YYYY-MM-DD"),
-        endDate.format("YYYY-MM-DD")
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      enabled: !startDate.isAfter(endDate),
+  const onSuccess = () => {
+    message.success(
+      `Room Calendar Fetched Successfully for ${startDate.format(
+        "YYYY-MM-DD"
+      )} to ${endDate.format("YYYY-MM-DD")}`
+    );
+  };
 
-      onSuccess: () => {
-        message.success(
-          `Room Calendar Fetched Successfully for ${startDate.format(
-            "YYYY-MM-DD"
-          )} to ${endDate.format("YYYY-MM-DD")}`
-        );
-      },
+const onError = (error: unknown) => {
+  let errorMessage = "An unexpected error occurred";
+  if (error instanceof Error) {
+    errorMessage = `Error: ${error.message}`;
+  } else if (typeof error === "string") {
+    errorMessage = `Error: ${error}`;
+  }
+  message.error(errorMessage);
+};
+    
 
-      onError: (error: unknown) => {
-        let errorMessage = "An unexpected error occurred";
-        if (error instanceof Error) {
-          errorMessage = `Error: ${error.message}`;
-        } else if (typeof error === "string") {
-          errorMessage = `Error: ${error}`;
-        }
-        message.error(errorMessage);
-      },
-    }
-  );
+
+  const { data, isLoading, error } = useFetchRateCalendar({
+    startDate,
+    endDate,
+    onSuccess,
+    onError,
+  });
 
   if (isLoading) return <ScreenLoaderLayout loaderMessage="Loading data..." />;
 
@@ -120,7 +113,6 @@ const RateCalendarLayout: React.FC = () => {
         </Card>
         <br />
       </Container>
-      
     </>
   );
 };
