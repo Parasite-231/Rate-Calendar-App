@@ -29,3 +29,8 @@ export interface IRoomCategory {
   rate_plans: IRatePlan[];
 }
 
+
+export interface IDates { 
+  startDate?: string;
+    endDate ? : string
+}
