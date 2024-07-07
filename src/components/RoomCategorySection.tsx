@@ -1,7 +1,10 @@
+// src/components/RoomCategorySection.tsx
 import { Box, Button } from "@mui/material";
 import React from "react";
+
 import { IRoomCategory } from "../types/interfaces";
 import occupancyIcon from "/icons/occupancyIcon.svg";
+import { useBulkUpdateCategories } from "../api/fetchRateCalendar";
 
 interface RoomCategorySectionProps {
   categories: IRoomCategory[];
@@ -18,6 +21,12 @@ const formatDate = (
 const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
   categories,
 }) => {
+  const mutation = useBulkUpdateCategories();
+
+  const handleBulkEdit = () => {
+    mutation.mutate(categories);
+  };
+
   const groupDatesByMonthYear = (dates: string[]) => {
     const grouped: { [key: string]: string[] } = {};
     dates.forEach((date) => {
@@ -76,6 +85,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                 className="bulk-edit-button"
                 variant="contained"
                 style={{ position: "sticky", background: "#F68656 " }}
+                onClick={handleBulkEdit}
               >
                 + BULK EDIT
               </Button>
@@ -105,6 +115,7 @@ const RoomCategorySection: React.FC<RoomCategorySectionProps> = ({
                       className="bulk-edit-button"
                       variant="contained"
                       style={{ position: "sticky", background: "#F68656 " }}
+                      onClick={handleBulkEdit}
                     >
                       + BULK EDIT
                     </Button>

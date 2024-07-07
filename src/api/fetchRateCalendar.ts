@@ -47,10 +47,10 @@
 
 import axios from "axios";
 import { Dayjs } from "dayjs";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { IRoomCategory } from "../types/interfaces";
 
-export const fetchRateCalendar = async (
+const fetchRateCalendar = async (
   startDate: string,
   endDate: string
 ): Promise<IRoomCategory[]> => {
@@ -75,6 +75,13 @@ export const fetchRateCalendar = async (
     }
   }
 };
+
+
+export const bulkUpdateCategories = async (categories: IRoomCategory[]) => {
+  const response = await axios.post(``, categories);
+  return response.data;
+};
+
 
 export const useFetchRateCalendar = ({
   startDate,
@@ -102,4 +109,19 @@ export const useFetchRateCalendar = ({
       onError,
     }
   );
+};
+
+
+export const useBulkUpdateCategories = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(bulkUpdateCategories, {
+    onSuccess: () => {
+    
+      queryClient.invalidateQueries("categories");
+    },
+    onError: (error) => {
+      console.error("Bulk update failed:", error);
+    },
+  });
 };
